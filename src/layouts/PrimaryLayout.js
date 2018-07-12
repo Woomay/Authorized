@@ -29,7 +29,7 @@ class PrimaryLayout extends React.Component {
                     collapsible
                     collapsed={this.state.collapsed}
                 >  
-                    <div className="logo">React App</div>
+                    <div className="logo">Authorized App</div>
                     <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
                         <Menu.Item key="1">
                             <Icon type="user" />
@@ -57,8 +57,8 @@ class PrimaryLayout extends React.Component {
                             onClick={this.handleToggle}
                             style={{fontSize: 24}}
                         />
-                        <PrimaryHeader />
-                        <Icon type="team" style={{fontSize: 24}} />
+                        {/* <PrimaryHeader /> */}
+                        {<Icon type="team" style={{fontSize: 24}} />}
                     </Header>
                     <Content style={{ margin: '24px 16px', padding: 24, background: '#fff', minHeight: 280 }}>
                         <main>

@@ -61,6 +61,7 @@ class Register extends React.Component {
         return(
             <div className="register-wrapper">
                 <Form onSubmit={this.hanleSubmit} className="register-form">
+                <FormItem style={{textAlign: 'center'}}><h2>Register</h2></FormItem>
                 <FormItem
                         {...formItemLayout}
                         label={(
