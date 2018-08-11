@@ -7,7 +7,7 @@ const app = express();
 
 app.use(cookieParser())
 app.use(bodyParser.json())
-app.use('/user',Router)
-app.listen(8000,() => {
-    console.log('Server is running at 8000 port...')
+app.use('/api',Router)
+app.listen(3000,() => {
+    console.log('Server is running at 3000 port...')
 })

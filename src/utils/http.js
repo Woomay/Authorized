@@ -1,14 +1,14 @@
 import 'whatwg-fetch';
 import {message} from 'antd'
 import {loadingStart, loadingEnd} from '../uis/loading/loading';
-import {storage, SESSION_USER_INFO} from '../modules/login/reduces/user';
+// import {storage, SESSION_USER_INFO} from '../modules/login/reduces/user';
 
 export const GLOBAL_START = '/api';
 export const NOT_LOGIN_CODE = -2;
 export const SUCCESS_CODE = 0;
 
 export function getUserInfo() {
-    return JSON.parse(storage.getItem(SESSION_USER_INFO)) || {};
+    return JSON.parse(window.localStorage.getItem('SESSION_USER_INFO')) || {};
 }
 function getUrl(api) {
     return api.indexOf('/njs') === 0 ? api : GLOBAL_START + api;
@@ -21,7 +21,7 @@ export function parseResponse(response) {
             if (res.status === SUCCESS_CODE) {
                 return Promise.resolve(res);
             }
-            message.erroe(res.message, 2);
+            message.error(res.message, 2);
             if (res.status === NOT_LOGIN_CODE) {
                 setTimeout(()=>{
                     window.location.href = '/login/sign-in';
