@@ -9,12 +9,18 @@ const FormItem = Form.Item;
 
 class Login extends React.Component {
     handleSubmit = (e) => {
-        // const {dispatch,getFieldValue} = this.props
+        const {dispatch} = this.props
+        console.log("props",this.props)
         e.preventDefault();
         this.props.form.validateFields((err,values) => {
             if (!err) {
-                // dispatch(this.context.router.history.push('/app'))
-                login().then(() => {this.context.router.history.push('/app')})
+                const formData = {
+                    user: values.username,
+                    pwd: values.password
+                }
+                dispatch(login(formData)).then(() => {
+                    this.context.router.history.push('/app')
+                })
             }
         })   
     }

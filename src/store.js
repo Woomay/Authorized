@@ -1,11 +1,10 @@
-import { createStore,combineReducers,applyMiddleware } from 'redux'
-import loggedUserReducer from './reducers/loggedUserReducers'
+import { createStore,applyMiddleware } from 'redux'
+import reducers from './reducers/index'
 import loggerMiddleware from './utils/loggerMiddleware'
+import thunk from 'redux-thunk'
 
-const reducers = combineReducers({
-    loggedUserState: loggedUserReducer
-})
-let middleware = applyMiddleware(loggerMiddleware);
+
+let middleware = applyMiddleware(thunk,loggerMiddleware);
 
 const store = createStore(reducers,middleware)
 

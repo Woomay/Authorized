@@ -177,3 +177,11 @@ html {
   .register-form-submit{
       width:100%;
   }
+
+  .menu{
+      display: 'inline-block';
+      color: '#1890ff';
+  }
+  .active{
+      color: '#fff'
+  }

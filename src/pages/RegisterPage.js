@@ -1,6 +1,8 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 import {Form,Input,Tooltip,Icon,Select,Row,Col,Checkbox,Button} from 'antd'
+import {register} from '../utils/xhr'
+import {message} from 'antd'
 
 const FormItem = Form.Item;
 const Option = Select.Option;
@@ -31,9 +33,25 @@ class Register extends React.Component {
             callback()
         }
     }
+    handleSubmit = (e) => {
+        const { dispatch } = this.props
+        e.preventDefault();
+        this.props.form.validateFieldsAndScroll((err, values) => {
+          if (!err) {
+            const formData = {
+                user: values.phone,
+                pwd: values.password
+            }
+            register(formData).then(()=>{
+                message.success('注册成功，请登录',1.5);
+                dispatch(this.context.router.history.push('/auth/login'))
+            })
+          }
+        });
+      }
     render() {
         const {getFieldDecorator,getFieldValue} = this.props.form;
-        console.info('getFieldValue',getFieldValue('phone'))
+        console.log('the register',this.props)
         const formItemLayout = {
             labelCol: {
                 xs: {span: 24},
@@ -60,9 +78,9 @@ class Register extends React.Component {
         )
         return(
             <div className="register-wrapper">
-                <Form onSubmit={this.hanleSubmit} className="register-form">
-                <FormItem style={{textAlign: 'center'}}><h2>Register</h2></FormItem>
-                <FormItem
+                <Form onSubmit={this.handleSubmit} className="register-form">
+                    <FormItem style={{textAlign: 'center'}}><h2>Register</h2></FormItem>
+                    <FormItem
                         {...formItemLayout}
                         label={(
                             <span>

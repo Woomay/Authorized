@@ -21,6 +21,12 @@ class PrimaryLayout extends React.Component {
     }
     render() {
         const {match} = this.props
+        const menus = [
+            {title: 'Home',path: '/app',iconType: 'user'},
+            {title: 'User',path: '/app/users',iconType: 'video-camera'},
+            {title: 'Products',path: '/app/products',iconType: 'upload'},
+            {title: 'Order',path: '/app/order',iconType: 'upload'},
+        ]
         return (
             <Layout style={{ minHeight: '100vh' }}>
                 <Sider
@@ -30,23 +36,13 @@ class PrimaryLayout extends React.Component {
                     collapsed={this.state.collapsed}
                 >  
                     <div className="logo">Authorized App</div>
-                    <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
-                        <Menu.Item key="1">
-                            <Icon type="user" />
-                            <span><NavLink to="/app" exact activeClassName="active">Home</NavLink></span>
-                        </Menu.Item>
-                        <Menu.Item key="2">
-                            <Icon type="video-camera" />
-                            <span><NavLink to="/app/users" activeClassName="active">Users</NavLink></span>
-                        </Menu.Item>
-                        <Menu.Item key="3">
-                            <Icon type="upload" />
-                            <span><NavLink to="/app/products" activeClassName="active">Products</NavLink></span>
-                        </Menu.Item>
-                        <Menu.Item key="4">
-                            <Icon type="upload" />
-                            <span><NavLink to="/app/order" activeClassName="active">Order</NavLink></span>
-                        </Menu.Item>
+                    <Menu theme="dark" mode="inline" defaultSelectedKeys={['Home']}>
+                        {menus.map((item,index) => {
+                            return <Menu.Item key={item.title}>
+                                <Icon type={item.iconType} />
+                                <NavLink style={{display: 'inline-block',color: '#fff'}} to={item.path} exact activeClassName="active">{item.title}</NavLink>
+                            </Menu.Item>
+                        })}
                     </Menu>
                 </Sider>
                 <Layout>
