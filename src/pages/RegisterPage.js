@@ -1,4 +1,5 @@
 import React from 'react'
+import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {Form,Input,Tooltip,Icon,Select,Row,Col,Checkbox,Button} from 'antd'
 import {register} from '../utils/xhr'
@@ -42,9 +43,9 @@ class Register extends React.Component {
                 user: values.phone,
                 pwd: values.password
             }
-            register(formData).then(()=>{
+            dispatch(register(formData)).then(()=>{
                 message.success('注册成功，请登录',1.5);
-                dispatch(this.context.router.history.push('/auth/login'))
+                this.context.router.history.push('/auth/login')
             })
           }
         });
@@ -157,4 +158,4 @@ class Register extends React.Component {
 
 const RegisterPage = Form.create()(Register)
 
-export default RegisterPage
+export default connect()(RegisterPage)

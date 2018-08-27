@@ -27,7 +27,8 @@ export function login(body) {
                     type: 'SET_LOGGED_USER',
                     logged: true
                 })
-                // store.dispatch(this.context.router.history.push('/app'))
+                console.log('GETSTATE',getState())
+                window.localStorage.setItem('LOGGED_USER_INFO', JSON.stringify(getState().loggedUserState));
             })
             .catch((err) => {
                 console.log('出问题了',err)
@@ -37,10 +38,11 @@ export function login(body) {
 
 export const logout = () => {
     return (dispatch) => {
-       store.dispatch({
-           type:'SET_LOGGED_USER',
-           logged: false
-       })
+        window.localStorage.removeItem('LOGGED_USER_INFO')
+        store.dispatch({
+            type:'SET_LOGGED_USER',
+            logged: false 
+        })
     }
 }
 

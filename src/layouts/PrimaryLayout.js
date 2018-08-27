@@ -6,7 +6,7 @@ import OrderPage from '../pages/OrderPage'
 import UserSubLayout from './UserSubLayout'
 import ProductSubLayout from './ProductSubLayout'
 
-import {Layout,Menu,Icon} from 'antd'
+import {Layout,Menu,Icon,Button,Tooltip} from 'antd'
 
 const {Header,Sider,Content,Footer} = Layout
 
@@ -46,7 +46,7 @@ class PrimaryLayout extends React.Component {
                     </Menu>
                 </Sider>
                 <Layout>
-                    <Header style={{ background: '#fff', padding: 0 }}>
+                    <Header style={{ background: '#fff', padding: '0px 16px',display: 'flex',justifyContent: 'space-between',alignItems: 'center'}}>
                         <Icon 
                             className="trigger"
                             type={this.state.collapsed ? 'menu-unfold' : 'menu-fold'}
@@ -54,7 +54,10 @@ class PrimaryLayout extends React.Component {
                             style={{fontSize: 24}}
                         />
                         {/* <PrimaryHeader /> */}
-                        {<Icon type="team" style={{fontSize: 24}} />}
+                        {/* <Icon type="team" style={{fontSize: 24}} /> */}
+                        <Tooltip title="logout">
+                            <Button type="default" shape="circle" icon="logout" />
+                        </Tooltip>
                     </Header>
                     <Content style={{ margin: '24px 16px', padding: 24, background: '#fff', minHeight: 280 }}>
                         <main>
